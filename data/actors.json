@@ -1,0 +1,110 @@
+[
+  {
+    "id": "",
+    "name": "Uhura Solutions",
+    "oneliner": "Uhura is an AI platform that reads and understands contracts just as humans do",
+    "description": "We help financial institutions speed up review and decision-making processes significantly by using an AI platform that streamlines the process of analyzing and drafting contracts and agreements. We use cutting-edge AI technologies such as vision processing to read contracts and natural language processing to understand the meaning.",
+    "registrationCountry": "United Kingdom",
+    "site": "https://uhurasolutions.com/",
+    "stage": "seed",
+    "type": "startup",
+    "status": "active",
+    "rank": "10"
+  },
+  {
+    "id": "",
+    "name": "Talkini",
+    "oneliner": "Video calls for professionals",
+    "description": "An ideal platform for everyone delivering their professional services remotely",
+    "registrationCountry": "Estonia",
+    "site": "https://www.talkini.com",
+    "stage": "seed",
+    "type": "startup",
+    "status": "active",
+    "rank": "20"
+  },
+  {
+    "id": "",
+    "name": "Daktilograf",
+    "oneliner": "",
+    "description": "",
+    "registrationCountry": "",
+    "site": "https://daktilograf.me",
+    "stage": "pre-seed",
+    "type": "startup",
+    "status": "active",
+    "rank": "30"
+  },
+  {
+    "id": "",
+    "name": "The Badger",
+    "oneliner": "",
+    "description": "",
+    "registrationCountry": "",
+    "site": "http://thebadger.me/",
+    "stage": "pre-seed",
+    "type": "startup" ,
+    "status": "active",
+    "rank": "40"
+  },
+  {
+    "id": "",
+    "name": "Marleq",
+    "oneliner": "",
+    "description": "",
+    "registrationCountry": "",
+    "site": "",
+    "stage": "pre-seed",
+    "type": "startup",
+    "status": "active",
+    "rank": "50"
+  },
+  {
+    "id": "",
+    "name": "Ivmax",
+    "oneliner": "",
+    "description": "",
+    "registrationCountry": "",
+    "site": "https://ivmax.me/",
+    "stage": "pre-seed",
+    "type": "startup",
+    "status": "active",
+    "rank": "60"
+  },
+  {
+    "id": "",
+    "name": "Clockwork Briefcase",
+    "oneliner": "",
+    "description": "",
+    "registrationCountry": "",
+    "site": "https://www.dlabac.com/me/clockwork_briefcase.html",
+    "stage": "pre-seed",
+    "type": "startup",
+    "status": "active",
+    "rank": "70"
+  },
+  {
+    "id": "",
+    "name": "BeeAndMe",
+    "oneliner": "",
+    "description": "",
+    "registrationCountry": "",
+    "site": "",
+    "stage": "pre-seed",
+    "type": "startup",
+    "status": "inactive",
+    "rank": "1010"
+  },
+  {
+    "id": "",
+    "name": "Tour Via Me",
+    "oneliner": "",
+    "description": "",
+    "registrationCountry": "",
+    "site": "",
+    "stage": "pre-seed",
+    "type": "startup",
+    "status": "inactive",
+    "rank": "1020"
+  }
+]

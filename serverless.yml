@@ -1,0 +1,70 @@
+service: atim-api
+
+frameworkVersion: "=1.46.1"
+
+# Use the serverless-webpack plugin to transpile ES6
+plugins:
+  - serverless-webpack
+  - serverless-offline
+  - serverless-stack-output
+  - serverless-plugin-diff
+
+custom:
+  # Our stage is based on what is passed in when running serverless
+  # commands. Or fallsback to what we have set in the provider section.
+  stage: ${opt:stage, self:provider.stage}
+  # Set the table name here so we can use it while testing locally
+  actorsTableName: ${self:custom.stage}-actors
+  # Load our webpack config
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+  # Load our secret environment variables based on the current stage.
+  # Fallback to default if it is not in prod.
+  environment: ${file(env.yml):${self:custom.stage}, file(env.yml):default}
+  output:
+    # handler: scripts/output.handler # Same syntax as you already know
+    file: stack.yml # toml, yaml, yml, and json format is available
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: us-east-1
+  deploymentBucket:
+    name: me.atim.deploys
+
+  # These environment variables are made available to our functions
+  # under process.env.
+  environment:
+    actorsTableName: ${self:custom.actorsTableName}
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        - "Fn::GetAtt": [ ActorsTable, Arn ]
+
+functions:
+  list:
+    # Defines an HTTP API endpoint that calls the main function in list.js
+    # - path: url path is /actors
+    # - method: GET request
+    handler: actors/list.main
+    events:
+      - http:
+          path: actors
+          method: get
+          cors: true
+
+# Create our resources with separate CloudFormation templates
+resources:
+  - ${file(resources/api-gateway-errors.yml)}
+  - ${file(resources/dynamodb-table.yml)}
