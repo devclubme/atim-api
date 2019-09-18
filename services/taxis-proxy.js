@@ -4,15 +4,19 @@ import {
 
 export class TaxisProxy {
 
-  getCompany(companyId) {
-    let result = await request(process.env.taxisServiceEndpoint, this._taxisProxyQuery, {
+  async getCompany(companyId) {
+    let result = await request(this._taxisServiceEndpoint, this._taxisProxyQuery, {
       companyId
     });
     // maybe do something with the result (like map into our own model?)
-    return result;
+    return result.taxis.company;
   }
-  
-  constructor() {
+
+  constructor(taxisServiceEndpoint = process.env.taxisServiceEndpoint) {
+    if (!taxisServiceEndpoint) {
+      throw new Error("Taxis Service Endpoint is not defined");
+    }
+    this._taxisServiceEndpoint = taxisServiceEndpoint;
     this._taxisProxyQuery = `
     query CompanyById($companyId : String!){
       taxis {
@@ -28,31 +32,15 @@ export class TaxisProxy {
           companyRegistrationId
           companyVatRegistrationDate
           companyVatRegistrationId
-          taxArea
           financialStatements {
-            details {
-              statementYear
-              statementToDate
-              statementId
-              statementFromDate
-              statementDate
-              statementCashFlowMethod
-              statementAuthorUnid
-              statementAuthorName
-              statementAuthorEmail
-              consolidatedStatement
-              companyOfficialUnid
-              companyOfficialLastName
-              companyOfficialFirstName
-              companyName
-              companyLocation
-              companyId
-              changeType
-              businessSectorCode
-            }
-            statementId
             year
+            statementId
+            balance {
+              income
+              expense
+            }
           }
+          taxArea
         }
         institution
         version
