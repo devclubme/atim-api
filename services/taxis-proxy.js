@@ -5,11 +5,11 @@ import {
 export class TaxisProxy {
 
   async getCompany(companyId) {
-    let result = await request(this._taxisServiceEndpoint, this._taxisProxyQuery, {
+    let { taxis : { company } } = await request(this._taxisServiceEndpoint, this._taxisProxyQuery, {
       companyId
     });
     // maybe do something with the result (like map into our own model?)
-    return result.taxis.company;
+    return company;
   }
 
   constructor(taxisServiceEndpoint = process.env.taxisServiceEndpoint) {
