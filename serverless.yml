@@ -16,7 +16,7 @@ custom:
   # Set the table name here so we can use it while testing locally
   actorsTableName: ${self:custom.stage}-actors
   # taxis endpoint
-  taxisEndpoint: ${ssm:/atim/self:custom.stage/taxisProxyEndpoint}
+  taxisEndpoint: ${ssm:/atim/${self:custom.stage}/taxisProxyEndpoint}
   # Load our webpack config
   webpack:
     webpackConfig: ./webpack.config.js
