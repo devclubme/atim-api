@@ -1,4 +1,4 @@
-export class RegistrationInfo {
+export default class RegistrationInfo {
   constructor(id, date, institution, vatInfo){
     this.id = id;
     this.date = date;
@@ -7,7 +7,7 @@ export class RegistrationInfo {
     Object.freeze(this);
   }
 
-  get registeredForVat(){
+  get isRegisteredForVat(){
     return !!this.vatRegistration;
   }
 
@@ -25,7 +25,7 @@ export class RegistrationInfo {
   }
 
   static fromDto({id, date, institution, vatId, vatRegistrationDate}){
-    let vatInfo = !!vatId ? { id: vatId, date: vatRegistrationDate} : null;
+    let vatInfo = !!vatId ? { id: vatId, date: vatRegistrationDate} : undefined;
     return new RegistrationInfo(id, date, institution, vatInfo);
   }
 }

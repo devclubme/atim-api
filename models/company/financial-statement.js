@@ -1,6 +1,6 @@
 import Balance from "./balance";
 
-export class FinancialStatement {
+export default class FinancialStatement {
   constructor(id, year, balance){
     this.id = id;
     this.year = year;

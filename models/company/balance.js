@@ -1,4 +1,4 @@
-export class Balance {
+export default class Balance {
   constructor(income, expense){
     this.income = income;
     this.expense = expense;
