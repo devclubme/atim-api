@@ -32,7 +32,7 @@ describe('RegistrationInfo', () => {
   describe('#toDto() and .fromDto()', () => {
     describe('when VAT info is present', () => {
       test('maps correctly to and from DTO', () => {
-        let registrationInfo = new RegistrationInfo(1, Date.now(), 'Sud', { id: 2, date: Date.now()});
+        let registrationInfo = new RegistrationInfo(1, Date.now(), 'Sud', { id: 2, date: Date.now(), area: "PG"});
         let dto = registrationInfo.toDto();
         let mappedFromDto = RegistrationInfo.fromDto(dto);
         expect(mappedFromDto).toBeInstanceOf(RegistrationInfo);

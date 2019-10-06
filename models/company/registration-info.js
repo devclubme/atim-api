@@ -21,11 +21,12 @@ export default class RegistrationInfo {
 
     dto.vatId = this.vatRegistration.id;
     dto.vatRegistrationDate = this.vatRegistration.date;
+    dto.taxArea = this.vatRegistration.area;
     return dto;
   }
 
-  static fromDto({id, date, institution, vatId, vatRegistrationDate}){
-    let vatInfo = !!vatId ? { id: vatId, date: vatRegistrationDate} : undefined;
+  static fromDto({id, date, institution, vatId, vatRegistrationDate, taxArea}){
+    let vatInfo = !!vatId ? { id: vatId, date: vatRegistrationDate, area: taxArea } : undefined;
     return new RegistrationInfo(id, date, institution, vatInfo);
   }
 }
