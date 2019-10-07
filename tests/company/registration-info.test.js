@@ -3,7 +3,7 @@ import RegistrationInfo from '../../models/company/registration-info'
 describe('RegistrationInfo', () => {
   describe('.ctor()', () => {
     test('initialized the object correctly', () => {
-      let id = 1, date = new Date(2014, 4, 4), institution = 'Sud', vatInfo = { id: 5, date: Date.now()}
+      let id = 1, date = new Date(2014, 4, 4), institution = 'Sud', vatInfo = { id: 5, date: new Date()}
       let registrationInfo = new RegistrationInfo(id, date, institution, vatInfo);
       expect(registrationInfo.id).toBe(id);
       expect(registrationInfo.date).toBe(date);
@@ -19,12 +19,12 @@ describe('RegistrationInfo', () => {
 
   describe('#isRegisteredForVat', () => {
     test('returns true if it has VAT information', () => {
-      let registrationInfo = new RegistrationInfo(1, Date.now(), 'Sud', { id: 2, date: Date.now()});
+      let registrationInfo = new RegistrationInfo(1, new Date(), 'Sud', { id: 2, date: new Date()});
       expect(registrationInfo.isRegisteredForVat).toBe(true);
     })
 
     test('returns false if it does not have VAT information', () => {
-      let registrationInfo = new RegistrationInfo(1, Date.now(), 'Sud');
+      let registrationInfo = new RegistrationInfo(1, new Date(), 'Sud');
       expect(registrationInfo.isRegisteredForVat).toBe(false);
     });
   });
@@ -32,7 +32,7 @@ describe('RegistrationInfo', () => {
   describe('#toDto() and .fromDto()', () => {
     describe('when VAT info is present', () => {
       test('maps correctly to and from DTO', () => {
-        let registrationInfo = new RegistrationInfo(1, Date.now(), 'Sud', { id: 2, date: Date.now(), area: "PG"});
+        let registrationInfo = new RegistrationInfo(1, new Date(), 'Sud', { id: 2, date: new Date(), area: "PG"});
         let dto = registrationInfo.toDto();
         let mappedFromDto = RegistrationInfo.fromDto(dto);
         expect(mappedFromDto).toBeInstanceOf(RegistrationInfo);
@@ -41,7 +41,7 @@ describe('RegistrationInfo', () => {
     });
     describe('when VAT info is not present', () => {
       test('maps correctly to and from DTO', () => {
-        let registrationInfo = new RegistrationInfo(1, Date.now(), 'Sud');
+        let registrationInfo = new RegistrationInfo(1, new Date(), 'Sud');
         let dto = registrationInfo.toDto();
         let mappedFromDto = RegistrationInfo.fromDto(dto);
         expect(mappedFromDto).toBeInstanceOf(RegistrationInfo);

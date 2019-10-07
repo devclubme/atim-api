@@ -30,6 +30,7 @@ custom:
 
 provider:
   name: aws
+  timeout: 60
   runtime: nodejs8.10
   stage: dev
   region: us-east-1
@@ -76,6 +77,18 @@ functions:
           path: companies
           method: get
           cors: true
+
+  refresh-company:
+      handler: companies/refresh.main
+      events:
+        - http:
+            path: companies/{id}/refresh
+            method: get
+            cors: true
+            request:
+              parameters:
+                paths:
+                  id: true
 
 # Create our resources with separate CloudFormation templates
 resources:

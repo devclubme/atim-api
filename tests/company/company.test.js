@@ -29,7 +29,7 @@ describe('Company', () => {
 
   describe('#toDto() and .fromDto()', () => {
     test('map correctly to and from DTO object', () => {
-      let company = new Company(12345, 'M-Tel', 'Some address', new BusinessSector(1, 'sec'), new RegistrationInfo(1, Date.now(), 'Sud'), [
+      let company = new Company(12345, 'M-Tel', 'Some address', new BusinessSector(1, 'sec'), new RegistrationInfo(1, new Date(), 'Sud'), [
         new FinancialStatement(1, 2014, new Balance(150, 50)),
         new FinancialStatement(2, 2015, new Balance(50, 150))
       ]);

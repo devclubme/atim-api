@@ -2,7 +2,7 @@ import {
   request
 } from 'graphql-request'
 
-export class TaxisProxy {
+export default class TaxisProxy {
 
   async getCompany(companyId) {
     let { taxis : { company } } = await request(this._taxisServiceEndpoint, this._taxisProxyQuery, {

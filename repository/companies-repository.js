@@ -15,6 +15,7 @@ export default class CompanyRepository {
 
   async save(company){
     let dto = company.toDto();
+    console.log(dto);
     await this._callDynamoDb('put', { Item: dto });
   }
 
