@@ -7,7 +7,7 @@ export async function main(event, context){
     let repository = new CompaniesRepository();
     let addOrUpdateCompany = new AddOrUpdateCompany();
     let companyIds = (await repository.getAll()).map(c => c.id);
-    companyIds.forEach(companyId => addOrUpdateCompany.execute(companyId));
+    companyIds.forEach(async companyId => await addOrUpdateCompany.execute(companyId));
     return success({companyIds});
   } catch (e) {
     console.log(e);
