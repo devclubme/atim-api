@@ -15,7 +15,6 @@ export default class AddOrUpdateCompany {
   async execute(companyId){
     let taxisResult = await this._taxisProxy.getCompany(companyId);
     let company = this._mapToCompanyModel(taxisResult);
-    console.log(company);
     await this._repository.save(company);
   }
 

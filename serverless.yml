@@ -90,6 +90,11 @@ functions:
                 paths:
                   id: true
 
+  refresh-all-companies:
+    handler: companies/cron/refresh-all-companies.main
+    events:
+      - schedule: rate(30 days)
+
 # Create our resources with separate CloudFormation templates
 resources:
   - ${file(resources/api-gateway-errors.yml)}
