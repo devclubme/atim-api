@@ -47,7 +47,7 @@ export default class AddOrUpdateCompany {
     return new FinancialStatement(
       taxisFinancialStatement.statementId,
       taxisFinancialStatement.year,
-      new Balance(taxisFinancialStatement.balance.income || 0, taxisFinancialStatement.balance.expense || 0));
+      new Balance(taxisFinancialStatement.balance.income || '0', taxisFinancialStatement.balance.expense || '0'));
   }
 
   _parseTaxisDate(dateString){
