@@ -4,7 +4,8 @@
   "description": "API for atim.me.",
   "main": "handler.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --testPathIgnorePatterns=integration",
+    "integration-test" : "jest"
   },
   "author": "",
   "license": "MIT",
