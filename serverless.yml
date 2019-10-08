@@ -16,6 +16,7 @@ custom:
   # Set the table name here so we can use it while testing locally
   actorsTableName: ${self:custom.stage}-actors
   companiesTableName: ${self:custom.stage}-companies
+  backgroundJobsTableName: ${self:custom.stage}-background-jobs
   taxisEndpoint: ${ssm:/atim/${self:custom.stage}/taxisProxyEndpoint}
   # Load our webpack config
   webpack:
@@ -42,6 +43,7 @@ provider:
   environment:
     actorsTableName: ${self:custom.actorsTableName}
     companiesTableName: ${self:custom.companiesTableName}
+    backgroundJobsTableName: ${self:custom.backgroundJobsTableName}
     taxisServiceEndpoint: ${self:custom.taxisEndpoint}
 
   iamRoleStatements:
@@ -54,9 +56,15 @@ provider:
         - dynamodb:PutItem
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
+        # for dynamodb streams
+        - dynamodb:DescribeStream
+        - dynamodb:GetRecords
+        - dynamodb:GetShardIterator
+        - dynamodb:ListStreams
       Resource:
         - "Fn::GetAtt": [ ActorsTable, Arn ]
         - "Fn::GetAtt": [ CompaniesTable, Arn ]
+        - "Fn::GetAtt": [ BackgroundJobsTable, Arn ]
 
 functions:
   list:
@@ -79,16 +87,38 @@ functions:
           cors: true
 
   refresh-company:
-      handler: companies/refresh.main
-      events:
-        - http:
-            path: companies/{id}/refresh
-            method: get
-            cors: true
-            request:
-              parameters:
-                paths:
-                  id: true
+    handler: companies/refresh.main
+    events:
+      - http:
+          path: companies/{id}/refresh
+          method: get
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
+
+  get-background-job:
+    handler: background-jobs/get.main
+    events:
+      - http:
+          path: background-jobs/{id}
+          method: get
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
+
+  process-background-job:
+    handler: background-jobs/process.main
+    events:
+      - stream:
+          type: dynamodb
+          arn:
+            Fn::GetAtt: [BackgroundJobsTable, StreamArn]
+          batchSize: 1
+
 
   refresh-all-companies:
     handler: companies/cron/refresh-all-companies.main
