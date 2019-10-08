@@ -15,8 +15,10 @@ custom:
   stage: ${opt:stage, self:provider.stage}
   # Set the table name here so we can use it while testing locally
   actorsTableName: ${self:custom.stage}-actors
+  companiesTableName: ${self:custom.stage}-companies
   # taxis endpoint
   taxisEndpoint: ${ssm:/atim/${self:custom.stage}/taxisProxyEndpoint}
+
   # Load our webpack config
   webpack:
     webpackConfig: ./webpack.config.js
@@ -40,6 +42,7 @@ provider:
   # under process.env.
   environment:
     actorsTableName: ${self:custom.actorsTableName}
+    companiesTableName: ${self:custom.companiesTableName}
     taxisServiceEndpoint: ${self:custom.taxisEndpoint}
 
   iamRoleStatements:
@@ -54,6 +57,7 @@ provider:
         - dynamodb:DeleteItem
       Resource:
         - "Fn::GetAtt": [ ActorsTable, Arn ]
+        - "Fn::GetAtt": [ CompaniesTable, Arn ]
 
 functions:
   list:
@@ -64,6 +68,14 @@ functions:
     events:
       - http:
           path: actors
+          method: get
+          cors: true
+
+  list-companies:
+    handler: companies/list.main
+    events:
+      - http:
+          path: companies
           method: get
           cors: true
 
