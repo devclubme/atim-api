@@ -1,4 +1,4 @@
-import TaxisProxy from '../services/taxis-proxy'
+import TaxisProxy from '../../services/taxis-proxy'
 
 describe('TaxisProxy', () => {
   describe('.ctor()', () => {

@@ -1,4 +1,4 @@
-import BusinessSector from '../../models/company/business-sector'
+import BusinessSector from '../../../models/company/business-sector'
 
 describe('BusinessSector', () => {
   describe('.ctor()', () => {

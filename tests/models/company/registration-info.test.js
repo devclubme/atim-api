@@ -1,4 +1,4 @@
-import RegistrationInfo from '../../models/company/registration-info'
+import RegistrationInfo from '../../../models/company/registration-info'
 
 describe('RegistrationInfo', () => {
   describe('.ctor()', () => {

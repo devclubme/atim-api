@@ -1,4 +1,4 @@
-import Balance from "../../models/company/balance"
+import Balance from "../../../models/company/balance"
 
 describe('Balance', () => {
 

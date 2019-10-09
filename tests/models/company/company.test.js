@@ -1,8 +1,8 @@
-import Company from '../../models/company/company'
-import RegistrationInfo from '../../models/company/registration-info';
-import FinancialStatement from '../../models/company/financial-statement';
-import Balance from '../../models/company/balance';
-import BusinessSector from '../../models/company/business-sector';
+import Company from '../../../models/company/company'
+import RegistrationInfo from '../../../models/company/registration-info';
+import FinancialStatement from '../../../models/company/financial-statement';
+import Balance from '../../../models/company/balance';
+import BusinessSector from '../../../models/company/business-sector';
 
 describe('Company', () => {
   describe('.ctor()', () => {

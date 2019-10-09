@@ -1,5 +1,5 @@
-import FinancialStatement from '../../models/company/financial-statement'
-import Balance from "../../models/company/balance"
+import FinancialStatement from '../../../models/company/financial-statement'
+import Balance from "../../../models/company/balance"
 
 describe('FinancialStatement', () => {
   describe('.ctor()', () => {

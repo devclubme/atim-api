@@ -31,7 +31,6 @@ custom:
 
 provider:
   name: aws
-  timeout: 60
   runtime: nodejs8.10
   stage: dev
   region: us-east-1
@@ -112,6 +111,7 @@ functions:
 
   process-background-job:
     handler: background-jobs/process.main
+    timeout: 60
     events:
       - stream:
           type: dynamodb
