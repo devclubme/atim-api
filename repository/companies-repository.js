@@ -1,11 +1,9 @@
-import * as dynamoDbLib from '../libs/dynamodb-lib';
 import Company from '../models/company/company';
+import BaseRepository from './base-repository';
 
-export default class CompanyRepository {
-  constructor(){
-    this._defaultParams = {
-      TableName: process.env.companiesTableName
-    };
+export default class CompanyRepository extends BaseRepository {
+  constructor(tableName = process.env.companiesTableName){
+    super(tableName);
   }
 
   async getAll(){
@@ -16,14 +14,5 @@ export default class CompanyRepository {
   async save(company){
     let dto = company.toDto();
     await this._callDynamoDb('put', { Item: dto });
-  }
-
-  _callDynamoDb(operation, params){
-    let dynamoDbParams = this._createDynamoParams(params || {});
-    return dynamoDbLib.call(operation, dynamoDbParams);
-  }
-
-  _createDynamoParams(params){
-    return Object.assign(params, this._defaultParams);
   }
 }

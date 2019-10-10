@@ -20,8 +20,7 @@ describe('BusinessSector', () => {
       let bs = new BusinessSector(1, 'some sector');
       let dto = bs.toDto();
       let mappedFromDto = BusinessSector.fromDto(dto);
-      expect(mappedFromDto).toBeInstanceOf(BusinessSector);
-      expect(mappedFromDto).toEqual(bs);
+      expect(mappedFromDto).toStrictEqual(bs);
     });
   })
 });

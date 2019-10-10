@@ -1,11 +1,9 @@
-import * as dynamoDbLib from '../libs/dynamodb-lib';
 import BackgroundJob from '../models/background-job';
+import BaseRepository from './base-repository';
 
-export default class BackgroundJobsRepository {
+export default class BackgroundJobsRepository extends BaseRepository {
   constructor(){
-    this._defaultParams = {
-      TableName: process.env.backgroundJobsTableName
-    };
+    super(process.env.backgroundJobsTableName);
   }
 
   async get(jobId){
@@ -16,14 +14,5 @@ export default class BackgroundJobsRepository {
   async save(job){
     let dto = job.toDto();
     await this._callDynamoDb('put', { Item: dto });
-  }
-
-  _callDynamoDb(operation, params){
-    let dynamoDbParams = this._createDynamoParams(params || {});
-    return dynamoDbLib.call(operation, dynamoDbParams);
-  }
-
-  _createDynamoParams(params){
-    return { ...params, ...this._defaultParams };
   }
 }

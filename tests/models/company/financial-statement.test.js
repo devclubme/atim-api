@@ -24,8 +24,7 @@ describe('FinancialStatement', () => {
       let statement = new FinancialStatement(1, 2014, new Balance(150,50));
       let dto = statement.toDto();
       let mappedFromDto = FinancialStatement.fromDto(dto);
-      expect(mappedFromDto).toBeInstanceOf(FinancialStatement);
-      expect(mappedFromDto).toEqual(statement);
+      expect(mappedFromDto).toStrictEqual(statement);
     });
   });
 

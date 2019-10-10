@@ -1,10 +1,6 @@
 import TaxisProxy from '../../services/taxis-proxy';
 import CompaniesRepository from '../../repository/companies-repository';
-import Company from '../../models/company/company';
-import BusinessSector from '../../models/company/business-sector';
-import RegistrationInfo from '../../models/company/registration-info';
-import FinancialStatement from '../../models/company/financial-statement';
-import Balance from '../../models/company/balance';
+import { Company, BusinessSector, RegistrationInfo, FinancialStatement, Balance } from '../../models/company';
 
 export default class AddOrUpdateCompany {
   constructor(taxisProxy = new TaxisProxy(), repository = new CompaniesRepository()){

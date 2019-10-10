@@ -35,8 +35,7 @@ describe('RegistrationInfo', () => {
         let registrationInfo = new RegistrationInfo(1, new Date(), 'Sud', { id: 2, date: new Date(), area: "PG"});
         let dto = registrationInfo.toDto();
         let mappedFromDto = RegistrationInfo.fromDto(dto);
-        expect(mappedFromDto).toBeInstanceOf(RegistrationInfo);
-        expect(mappedFromDto).toEqual(registrationInfo);
+        expect(mappedFromDto).toStrictEqual(registrationInfo);
       });
     });
     describe('when VAT info is not present', () => {
@@ -44,8 +43,7 @@ describe('RegistrationInfo', () => {
         let registrationInfo = new RegistrationInfo(1, new Date(), 'Sud');
         let dto = registrationInfo.toDto();
         let mappedFromDto = RegistrationInfo.fromDto(dto);
-        expect(mappedFromDto).toBeInstanceOf(RegistrationInfo);
-        expect(mappedFromDto).toEqual(registrationInfo);
+        expect(mappedFromDto).toStrictEqual(registrationInfo);
       });
     });
   });

@@ -35,8 +35,7 @@ describe('Company', () => {
       ]);
       let dto = company.toDto();
       let mappedFromDto = Company.fromDto(dto);
-      expect(mappedFromDto).toBeInstanceOf(Company);
-      expect(mappedFromDto).toEqual(company);
+      expect(mappedFromDto).toStrictEqual(company);
     });
   });
 });
