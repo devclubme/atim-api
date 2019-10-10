@@ -1,24 +1,24 @@
 import BackgroundJob from '../../models/background-job';
 import { Status } from '../../models/background-job';
 
-describe('BackgroundJob', () => {
+describe(BackgroundJob, () => {
   describe('.ctor()', () => {
-    test('by default initializes the id with an uuid', () => {
+    it('by default initializes the id with an uuid', () => {
       let job = new BackgroundJob('name', {});
       expect(job.id).toBeDefined();
     });
 
-    test('by default initializes the status with Status.PENDING', () => {
+    it('by default initializes the status with Status.PENDING', () => {
       let job = new BackgroundJob('name', {});
       expect(job.status).toBe(Status.PENDING);
     });
 
-    test('by default initializes timestamps with createdAt time', () => {
+    it('by default initializes timestamps with createdAt time', () => {
       let job = new BackgroundJob('name', {});
       expect(job.timestamps.createdAt).toBeInstanceOf(Date);
     });
 
-    test('correctly initializes the props', () => {
+    it('correctly initializes the props', () => {
       let job = new BackgroundJob('name', { id: 1 }, 'some-id', 'status', { createdAt: 'BLAH' });
       expect(job.id).toBe('some-id');
       expect(job.name).toBe('name');
@@ -29,13 +29,13 @@ describe('BackgroundJob', () => {
   });
 
   describe('#markAsRunning()', () => {
-    test('updates status to running', () => {
+    it('updates status to running', () => {
       let job = new BackgroundJob('name', {});
       job.markAsRunning();
       expect(job.status).toBe(Status.RUNNING);
     });
 
-    test('updates timestamps with startedAt', () => {
+    it('updates timestamps with startedAt', () => {
       let job = new BackgroundJob('name', {});
       job.markAsRunning();
       expect(job.timestamps.startedAt).toBeInstanceOf(Date);
@@ -43,13 +43,13 @@ describe('BackgroundJob', () => {
   });
 
   describe('#markAsDone()', () => {
-    test('updates status to done', () => {
+    it('updates status to done', () => {
       let job = new BackgroundJob();
       job.markAsDone();
       expect(job.status).toBe(Status.DONE);
     });
 
-    test('updates timestamps with finishedAt', () => {
+    it('updates timestamps with finishedAt', () => {
       let job = new BackgroundJob();
       job.markAsDone();
       expect(job.timestamps.finishedAt).toBeInstanceOf(Date);
@@ -57,13 +57,13 @@ describe('BackgroundJob', () => {
   });
 
   describe('#markAsFailed()', () => {
-    test('updates status to failed', () => {
+    it('updates status to failed', () => {
       let job = new BackgroundJob();
       job.markAsFailed();
       expect(job.status).toBe(Status.FAILED);
     });
 
-    test('updates timestamps with finishedAt', () => {
+    it('updates timestamps with finishedAt', () => {
       let job = new BackgroundJob();
       job.markAsFailed();
       expect(job.timestamps.finishedAt).toBeInstanceOf(Date);
@@ -71,7 +71,7 @@ describe('BackgroundJob', () => {
   });
 
   describe('#toDto() and .fromDto()', () => {
-    test('correctly serializes to and from DTO', () => {
+    it('correctly serializes to and from DTO', () => {
       let job = new BackgroundJob('name', { a: 2, b: 3}, 'some-id', Status.RUNNING);
       let dto = job.toDto();
       let mappedFromDto = BackgroundJob.fromDto(dto);

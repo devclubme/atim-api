@@ -8,7 +8,6 @@ export default class TaxisProxy {
     let { taxis : { company } } = await request(this._taxisServiceEndpoint, this._taxisProxyQuery, {
       companyId
     });
-    // maybe do something with the result (like map into our own model?)
     return company;
   }
 

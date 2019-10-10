@@ -18,7 +18,7 @@ export default class JobProcessor {
   }
 
   async _processJob(job){
-    throw new Error('not implemented');
+    throw new Error('Not Implemented');
   }
 
   async _markAsRunning(job){

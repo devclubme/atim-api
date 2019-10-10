@@ -15,7 +15,7 @@ describe(BackgroundJobsRepository, () => {
       dynamoDbLib.call.mockResolvedValue({ Item: job.toDto()});
     });
 
-    test('correctly calls DynamoDB', async () => {
+    it('correctly calls DynamoDB', async () => {
       await repository.get(job.id);
       expect(dynamoDbLib.call).toHaveBeenCalledWith('get', {
         TableName: mockTableName,
@@ -25,14 +25,14 @@ describe(BackgroundJobsRepository, () => {
       });
     });
 
-    test('maps correctly from DTO', async () => {
+    it('maps correctly from DTO', async () => {
       let result = await repository.get(job.id);
       expect(result).toStrictEqual(job);
     });
   });
 
   describe('#save()', () => {
-    test('correctly calls DynamoDB', async () => {
+    it('correctly calls DynamoDB', async () => {
       await repository.save(job);
       expect(dynamoDbLib.call).toHaveBeenCalledWith('put', {
         TableName: mockTableName,
