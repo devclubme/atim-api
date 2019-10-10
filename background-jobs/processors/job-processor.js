@@ -22,19 +22,21 @@ export default class JobProcessor {
   }
 
   async _markAsRunning(job){
-    await this._updateJobStatus(job, Status.RUNNING);
+    job.markAsRunning();
+    await this._updateJob(job);
   }
 
   async _markAsDone(job){
-    await this._updateJobStatus(job, Status.DONE);
+    job.markAsDone();
+    await this._updateJob(job);
   }
 
   async _markAsFailed(job){
-    await this._updateJobStatus(job, Status.FAILED);
+    job.markAsFailed();
+    await this._updateJob(job);
   }
 
-  async _updateJobStatus(job, status){
-    job.status = status;
+  async _updateJob(job){
     await this._repository.save(job);
   }
 }

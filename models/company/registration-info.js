@@ -26,7 +26,7 @@ export default class RegistrationInfo {
   }
 
   static fromDto({id, date, institution, vatId, vatRegistrationDate, taxArea}){
-    let vatInfo = !!vatId ? { id: vatId, date: new Date(Date.parse(vatRegistrationDate)), area: taxArea } : undefined;
-    return new RegistrationInfo(id, new Date(Date.parse(date)), institution, vatInfo);
+    let vatInfo = !!vatId ? { id: vatId, date: new Date(date), area: taxArea } : undefined;
+    return new RegistrationInfo(id, new Date(date), institution, vatInfo);
   }
 }
