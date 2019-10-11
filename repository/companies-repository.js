@@ -1,7 +1,7 @@
 import Company from '../models/company/company';
 import BaseRepository from './base-repository';
 
-export default class CompanyRepository extends BaseRepository {
+export default class CompaniesRepository extends BaseRepository {
   constructor(tableName = process.env.companiesTableName){
     super(tableName);
   }

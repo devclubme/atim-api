@@ -48,6 +48,6 @@ export default class AddOrUpdateCompany {
 
   _parseTaxisDate(dateString){
     let match = dateString.match(/(\d{2})(?:\.)(\d{2})(?:\.)(\d{4})(?:\.?)/);
-    return new Date(match[3], match[2], match[1]);
+    return new Date(`${match[3]}-${match[2]}-${match[1]}`);
   }
 }

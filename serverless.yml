@@ -66,7 +66,7 @@ provider:
         - "Fn::GetAtt": [ BackgroundJobsTable, Arn ]
 
 functions:
-  list:
+  list-actors:
     # Defines an HTTP API endpoint that calls the main function in list.js
     # - path: url path is /actors
     # - method: GET request
@@ -121,7 +121,7 @@ functions:
 
 
   refresh-all-companies:
-    handler: companies/cron/refresh-all-companies.main
+    handler: companies/refresh-all-companies.main
     events:
       - schedule: rate(30 days)
 

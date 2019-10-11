@@ -7,7 +7,9 @@ export async function main({ pathParameters: { id: companyId } }, context){
     let job = new BackgroundJob('refresh-company', { companyId });
     let repository = new BackgroundJobsRepository();
     await repository.save(job);
-    return accepted(job.toDto());
+    return accepted({
+      jobId: job.id
+    });
   } catch (e) {
     console.log(e);
     return failure({ status: false });

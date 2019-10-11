@@ -1,0 +1,49 @@
+{
+  "address": "BULEVAR SVETOG PETRA CETINJSKOG 143 , PODGORICA, CRNA GORA",
+  "businessSector": {
+    "code": "6120",
+    "name": "Bežične telekomunikacije"
+  },
+  "financialStatements": [
+    {
+      "expense": "59659047",
+      "id": "83612/2018",
+      "income": "71048552",
+      "year": "2018"
+    },
+    {
+      "expense": "56525956",
+      "id": "56806/2017",
+      "income": "67792378",
+      "year": "2017"
+    },
+    {
+      "expense": "47495211",
+      "id": "50171/2016",
+      "income": "52149166",
+      "year": "2016"
+    },
+    {
+      "expense": "38045017",
+      "id": "17511/2015",
+      "income": "41661268",
+      "year": "2015"
+    },
+    {
+      "expense": "36761145",
+      "id": "19149/2014",
+      "income": "39844670",
+      "year": "2014"
+    }
+  ],
+  "id": "02655284",
+  "name": "DRUŠTVO ZA TELEKOMUNIKACIJE \" MTEL \" D.O.O. PODGORICA",
+  "registrationInfo": {
+    "date": "2007-04-04T00:00:00.000Z",
+    "id": "5-0368574/001",
+    "institution": "Privredni sud Podgorica",
+    "taxArea": "Područna jedinica Podgorica",
+    "vatId": "30/31-06150-3",
+    "vatRegistrationDate": "2007-04-17T00:00:00.000Z"
+  }
+}
