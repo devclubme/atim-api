@@ -14,19 +14,19 @@ export default class RegistrationInfo {
   toDto(){
     let dto = {
       id: this.id,
-      date: this.date,
+      date: this.date.toISOString(),
       institution: this.institution,
     };
     if(!this.vatRegistration) return dto;
 
     dto.vatId = this.vatRegistration.id;
-    dto.vatRegistrationDate = this.vatRegistration.date;
+    dto.vatRegistrationDate = this.vatRegistration.date.toISOString();
     dto.taxArea = this.vatRegistration.area;
     return dto;
   }
 
   static fromDto({id, date, institution, vatId, vatRegistrationDate, taxArea}){
-    let vatInfo = !!vatId ? { id: vatId, date: vatRegistrationDate, area: taxArea } : undefined;
-    return new RegistrationInfo(id, date, institution, vatInfo);
+    let vatInfo = !!vatId ? { id: vatId, date: new Date(vatRegistrationDate), area: taxArea } : undefined;
+    return new RegistrationInfo(id, new Date(date), institution, vatInfo);
   }
 }

@@ -1,0 +1,56 @@
+{
+  "companyName": "DRUŠTVO ZA TELEKOMUNIKACIJE \" MTEL \" D.O.O. PODGORICA",
+  "businessSectorCode": "6120",
+  "businessSectorName": "Bežične telekomunikacije",
+  "companyAddress": "BULEVAR SVETOG PETRA CETINJSKOG 143 , PODGORICA, CRNA GORA",
+  "companyId": "02655284",
+  "companyRegisteredForVat": "Da",
+  "companyRegistrationDate": "04.04.2007",
+  "companyRegistrationInstitution": "Privredni sud Podgorica",
+  "companyRegistrationId": "5-0368574/001",
+  "companyVatRegistrationDate": "17.04.2007",
+  "companyVatRegistrationId": "30/31-06150-3",
+  "financialStatements": [
+    {
+      "year": "2018",
+      "statementId": "83612/2018",
+      "balance": {
+        "income": "71048552",
+        "expense": "59659047"
+      }
+    },
+    {
+      "year": "2017",
+      "statementId": "56806/2017",
+      "balance": {
+        "income": "67792378",
+        "expense": "56525956"
+      }
+    },
+    {
+      "year": "2016",
+      "statementId": "50171/2016",
+      "balance": {
+        "income": "52149166",
+        "expense": "47495211"
+      }
+    },
+    {
+      "year": "2015",
+      "statementId": "17511/2015",
+      "balance": {
+        "income": "41661268",
+        "expense": "38045017"
+      }
+    },
+    {
+      "year": "2014",
+      "statementId": "19149/2014",
+      "balance": {
+        "income": "39844670",
+        "expense": "36761145"
+      }
+    }
+  ],
+  "taxArea": "Područna jedinica Podgorica"
+}

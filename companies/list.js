@@ -1,15 +1,11 @@
-import * as dynamoDbLib from "../libs/dynamodb-lib"
 import { success, failure } from "../libs/response-lib";
-import Company from "../models/company/company";
+import CompanyRepository from "../repository/companies-repository";
 
 export async function main(event, context){
-  const params = {
-    TableName: process.env.companiesTableName
-  };
-
   try {
-    const result = await dynamoDbLib.call("scan", params);
-    return success(result.Items.map(i => Company.fromDto(i)));
+    let repository = new CompanyRepository();
+    let companies = await repository.getAll();
+    return success(companies);
   } catch (e) {
     console.log(e);
     return failure({ status: false });

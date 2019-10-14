@@ -1,9 +1,9 @@
-import Balance from "../../models/company/balance"
+import Balance from "../../../models/company/balance"
 
-describe('Balance', () => {
+describe(Balance, () => {
 
   describe('.ctor()', () => {
-    test('initializes the object correctly', () => {
+    it('initializes the object correctly', () => {
       let income = 100;
       let expense = 50;
       let balance = new Balance(income, expense);
@@ -11,7 +11,7 @@ describe('Balance', () => {
       expect(balance.expense).toBe(expense);
     });
 
-    test('freezes the object for modification', () => {
+    it('freezes the object for modification', () => {
       let balance = new Balance(100, 100);
       expect(() => balance.income = -100).toThrowError();
       expect(() => balance['newProp'] = 'newVal').toThrowError();
@@ -19,12 +19,12 @@ describe('Balance', () => {
   });
 
   describe('#profit', () => {
-    test('computes the correct profit value', () => {
+    it('computes the correct profit value', () => {
       var balance = new Balance(100, 50);
       expect(balance.profit).toBe(50);
     });
 
-    test('computes the correct loss value', () => {
+    it('computes the correct loss value', () => {
       var balance = new Balance(50, 100);
       expect(balance.profit).toBe(-50);
     });

@@ -16,9 +16,8 @@ custom:
   # Set the table name here so we can use it while testing locally
   actorsTableName: ${self:custom.stage}-actors
   companiesTableName: ${self:custom.stage}-companies
-  # taxis endpoint
+  backgroundJobsTableName: ${self:custom.stage}-background-jobs
   taxisEndpoint: ${ssm:/atim/${self:custom.stage}/taxisProxyEndpoint}
-
   # Load our webpack config
   webpack:
     webpackConfig: ./webpack.config.js
@@ -43,6 +42,7 @@ provider:
   environment:
     actorsTableName: ${self:custom.actorsTableName}
     companiesTableName: ${self:custom.companiesTableName}
+    backgroundJobsTableName: ${self:custom.backgroundJobsTableName}
     taxisServiceEndpoint: ${self:custom.taxisEndpoint}
 
   iamRoleStatements:
@@ -55,12 +55,18 @@ provider:
         - dynamodb:PutItem
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
+        # for dynamodb streams
+        - dynamodb:DescribeStream
+        - dynamodb:GetRecords
+        - dynamodb:GetShardIterator
+        - dynamodb:ListStreams
       Resource:
         - "Fn::GetAtt": [ ActorsTable, Arn ]
         - "Fn::GetAtt": [ CompaniesTable, Arn ]
+        - "Fn::GetAtt": [ BackgroundJobsTable, Arn ]
 
 functions:
-  list:
+  list-actors:
     # Defines an HTTP API endpoint that calls the main function in list.js
     # - path: url path is /actors
     # - method: GET request
@@ -78,6 +84,46 @@ functions:
           path: companies
           method: get
           cors: true
+
+  refresh-company:
+    handler: companies/refresh.main
+    events:
+      - http:
+          path: companies/{id}/refresh
+          method: get
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
+
+  get-background-job:
+    handler: background-jobs/get.main
+    events:
+      - http:
+          path: background-jobs/{id}
+          method: get
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
+
+  process-background-job:
+    handler: background-jobs/process.main
+    timeout: 60
+    events:
+      - stream:
+          type: dynamodb
+          arn:
+            Fn::GetAtt: [BackgroundJobsTable, StreamArn]
+          batchSize: 1
+
+
+  refresh-all-companies:
+    handler: companies/refresh-all-companies.main
+    events:
+      - schedule: rate(30 days)
 
 # Create our resources with separate CloudFormation templates
 resources:

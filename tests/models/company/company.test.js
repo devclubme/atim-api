@@ -1,12 +1,12 @@
-import Company from '../../models/company/company'
-import RegistrationInfo from '../../models/company/registration-info';
-import FinancialStatement from '../../models/company/financial-statement';
-import Balance from '../../models/company/balance';
-import BusinessSector from '../../models/company/business-sector';
+import Company from '../../../models/company/company'
+import RegistrationInfo from '../../../models/company/registration-info';
+import FinancialStatement from '../../../models/company/financial-statement';
+import Balance from '../../../models/company/balance';
+import BusinessSector from '../../../models/company/business-sector';
 
-describe('Company', () => {
+describe(Company, () => {
   describe('.ctor()', () => {
-    test('correctly initializes the object', () => {
+    it('correctly initializes the object', () => {
       let id = 12345, name = 'M-Tel', address = 'neka adresa';
       let bs = new BusinessSector(1, 'sector');
       let registrationInfo = { id: 12345 };
@@ -20,7 +20,7 @@ describe('Company', () => {
       expect(company.registrationInfo).toBe(registrationInfo);
     });
 
-    test('freezes object for modification', () => {
+    it('freezes object for modification', () => {
       let company = new Company();
       expect(() => company.id = 123).toThrowError();
       expect(() => company['newProp'] = 'newVal').toThrowError();
@@ -28,15 +28,14 @@ describe('Company', () => {
   });
 
   describe('#toDto() and .fromDto()', () => {
-    test('map correctly to and from DTO object', () => {
-      let company = new Company(12345, 'M-Tel', 'Some address', new BusinessSector(1, 'sec'), new RegistrationInfo(1, Date.now(), 'Sud'), [
+    it('map correctly to and from DTO object', () => {
+      let company = new Company(12345, 'M-Tel', 'Some address', new BusinessSector(1, 'sec'), new RegistrationInfo(1, new Date(), 'Sud'), [
         new FinancialStatement(1, 2014, new Balance(150, 50)),
         new FinancialStatement(2, 2015, new Balance(50, 150))
       ]);
       let dto = company.toDto();
       let mappedFromDto = Company.fromDto(dto);
-      expect(mappedFromDto).toBeInstanceOf(Company);
-      expect(mappedFromDto).toEqual(company);
+      expect(mappedFromDto).toStrictEqual(company);
     });
   });
 });
