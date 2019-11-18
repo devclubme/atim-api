@@ -1,6 +1,6 @@
 service: atim-api
 
-frameworkVersion: "=1.46.1"
+frameworkVersion: "=1.49.0"
 
 # Use the serverless-webpack plugin to transpile ES6
 plugins:

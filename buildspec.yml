@@ -6,7 +6,7 @@ phases:
       nodejs: 10
     commands:
     - npm install --silent --no-progress -g npm
-    - npm install --silent --no-progress -g serverless@1.46.1
+    - npm install --silent --no-progress -g serverless@1.49.0
 
   pre_build:
     commands:
