@@ -15,14 +15,7 @@ phases:
   build:
     commands:
     - npm run test
-    - mkdir -p target/stg
-    - mkdir target/prod
-    - serverless package --package target/stg --stage stg -v -r us-east-1
-    - serverless package --package target/prod --stage prod -v -r us-east-1
 
 artifacts:
   files:
-  - target/**/*
-  - node_modules/**/*
-  - serverless.yml
-  - deploy.sh
+  - ./**/*
